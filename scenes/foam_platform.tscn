@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3khcmiv3fy45"]
+
+[ext_resource type="Texture2D" uid="uid://bsjk8roxx6sbv" path="res://assets/Platforms/foam-platform.png" id="1_75yu5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5ex3"]
+size = Vector2(161, 32)
+
+[node name="FoamPlatform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_75yu5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 3)
+shape = SubResource("RectangleShape2D_o5ex3")

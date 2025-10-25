@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://nb1gm4b7788n"]
+
+[ext_resource type="Script" uid="uid://c8wt7pmyxjq11" path="res://scripts/platform.gd" id="1_ba0x2"]
+[ext_resource type="Resource" uid="uid://bns0pcjn26msn" path="res://resources/standard_platform.tres" id="2_nlgqw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nlgqw"]
+
+[node name="Platform" type="RigidBody2D"]
+gravity_scale = 0.0
+script = ExtResource("1_ba0x2")
+platform_info = ExtResource("2_nlgqw")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nlgqw")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

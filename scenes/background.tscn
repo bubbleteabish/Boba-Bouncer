@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://oimecoexews6"]
+
+[node name="Node2D" type="Parallax2D"]
+repeat_size = Vector2(0, 960)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 540.0
+offset_bottom = 960.0
+color = Color(0.6009831, 0.4198284, 0.28552398, 1)

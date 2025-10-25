@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlatformResource" load_steps=3 format=3 uid="uid://urhm146saq8w"]
+
+[ext_resource type="Script" uid="uid://d240g447t5eli" path="res://scripts/platform_res.gd" id="1_qwjex"]
+[ext_resource type="Texture2D" uid="uid://xq52fwitmmqp" path="res://assets/Traps/Falling Platforms/Off.png" id="2_bd5nq"]
+
+[resource]
+script = ExtResource("1_qwjex")
+name = "Popping Platform"
+sprite = ExtResource("2_bd5nq")
+metadata/_custom_type_script = "uid://d240g447t5eli"

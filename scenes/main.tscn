@@ -1,0 +1,17 @@
+[gd_scene load_steps=5 format=3 uid="uid://b1p6sne6u37vs"]
+
+[ext_resource type="Script" uid="uid://1h66015g6181" path="res://scripts/main.gd" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://oimecoexews6" path="res://scenes/background.tscn" id="2_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://d3khcmiv3fy45" path="res://scenes/foam_platform.tscn" id="3_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://ujhetrqauo1j" path="res://scenes/player.tscn" id="4_tefeu"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_o5qli")
+
+[node name="Node2D" parent="." instance=ExtResource("2_jyhfs")]
+
+[node name="FoamPlatform" parent="." instance=ExtResource("3_tbgi4")]
+position = Vector2(255, 887)
+
+[node name="Player" parent="." instance=ExtResource("4_tefeu")]
+position = Vector2(260, 771)
