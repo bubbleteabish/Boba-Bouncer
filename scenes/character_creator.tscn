@@ -1,0 +1,81 @@
+[gd_scene load_steps=21 format=3 uid="uid://c0x61o38etgjo"]
+
+[ext_resource type="Script" uid="uid://dc6redyole05l" path="res://scripts/character_creator.gd" id="1_ja2xc"]
+[ext_resource type="PackedScene" uid="uid://ujhetrqauo1j" path="res://scenes/player.tscn" id="2_6txqo"]
+[ext_resource type="Texture2D" uid="uid://b5sxbiymfsyqw" path="res://assets/Player/angry-brows.png" id="2_in210"]
+[ext_resource type="Texture2D" uid="uid://n17j5je55jln" path="res://assets/Player/rasied-brows.png" id="3_p0l4m"]
+[ext_resource type="Texture2D" uid="uid://c5j4hk5whqyta" path="res://assets/Player/sad-brows.png" id="4_y4ojd"]
+[ext_resource type="Texture2D" uid="uid://fdqfj7u2fup" path="res://assets/Player/shocked-brows.png" id="5_xhj85"]
+[ext_resource type="Texture2D" uid="uid://65po3ickudnb" path="res://assets/Player/standard-brows.png" id="6_rqrh5"]
+[ext_resource type="Texture2D" uid="uid://cqlkbdv4nnubm" path="res://assets/Player/straight-brows.png" id="7_x7ufa"]
+[ext_resource type="Texture2D" uid="uid://4tkuum1ffw8g" path="res://assets/Player/angry-eyes.png" id="8_ix263"]
+[ext_resource type="Texture2D" uid="uid://43qk5kwwqxqp" path="res://assets/Player/sad-eyes.png" id="9_n1i1y"]
+[ext_resource type="Texture2D" uid="uid://bfa8ixrbql5c7" path="res://assets/Player/scared-eyes.png" id="10_nj4er"]
+[ext_resource type="Texture2D" uid="uid://dnqe6gip07rsi" path="res://assets/Player/standard-eyes.png" id="11_1uaso"]
+[ext_resource type="Texture2D" uid="uid://jyhn1mncwf4p" path="res://assets/Player/stressed-eyes.png" id="12_7lds4"]
+[ext_resource type="Texture2D" uid="uid://bwxoappvjadaq" path="res://assets/Player/wide-eyes.png" id="13_hx0hx"]
+[ext_resource type="Texture2D" uid="uid://css3toc7tnwyc" path="res://assets/Player/angry-mouth.png" id="14_axsho"]
+[ext_resource type="Texture2D" uid="uid://r76lhwtkb587" path="res://assets/Player/sad-mouth.png" id="15_xfpfe"]
+[ext_resource type="Texture2D" uid="uid://d2mm41buwdjaq" path="res://assets/Player/scared-mouth.png" id="16_xxul2"]
+[ext_resource type="Texture2D" uid="uid://dpevr1p56di60" path="res://assets/Player/silly-mouth.png" id="17_e8qli"]
+[ext_resource type="Texture2D" uid="uid://bne6uqaaj547t" path="res://assets/Player/smile-mouth.png" id="18_kschl"]
+[ext_resource type="Texture2D" uid="uid://l2e8reknyk3h" path="res://assets/Player/standard-mouth.png" id="19_2uqtn"]
+
+[node name="CharacterCreator" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ja2xc")
+brows = Array[Texture]([ExtResource("6_rqrh5"), ExtResource("2_in210"), ExtResource("3_p0l4m"), ExtResource("4_y4ojd"), ExtResource("5_xhj85"), ExtResource("7_x7ufa")])
+eyes = Array[Texture]([ExtResource("11_1uaso"), ExtResource("8_ix263"), ExtResource("9_n1i1y"), ExtResource("10_nj4er"), ExtResource("12_7lds4"), ExtResource("13_hx0hx")])
+mouths = Array[Texture]([ExtResource("19_2uqtn"), ExtResource("14_axsho"), ExtResource("15_xfpfe"), ExtResource("16_xxul2"), ExtResource("17_e8qli"), ExtResource("18_kschl")])
+
+[node name="Player" parent="." instance=ExtResource("2_6txqo")]
+position = Vector2(269, 279)
+scale = Vector2(1.48, 1.48)
+disable_mode = 1
+motion_mode = 1
+
+[node name="Done" type="Button" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 91.0
+offset_right = 319.0
+offset_bottom = 141.0
+theme_override_font_sizes/font_size = 30
+text = "DONE"
+
+[node name="Brows" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 429.0
+offset_right = 318.0
+offset_bottom = 479.0
+theme_override_font_sizes/font_size = 30
+text = "Brows"
+
+[node name="Eyes" type="Button" parent="."]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 489.0
+offset_right = 320.0
+offset_bottom = 539.0
+theme_override_font_sizes/font_size = 30
+text = "Eyes"
+
+[node name="Mouth" type="Button" parent="."]
+layout_mode = 0
+offset_left = 220.0
+offset_top = 556.0
+offset_right = 324.0
+offset_bottom = 606.0
+theme_override_font_sizes/font_size = 30
+text = "Mouth"
+
+[connection signal="pressed" from="Done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="Brows" to="." method="_on_brows_pressed"]
+[connection signal="pressed" from="Eyes" to="." method="_on_eyes_pressed"]
+[connection signal="pressed" from="Mouth" to="." method="_on_mouth_pressed"]

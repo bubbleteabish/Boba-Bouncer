@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PlatformResource" load_steps=3 format=3 uid="uid://bns0pcjn26msn"]
+
+[ext_resource type="Script" uid="uid://d240g447t5eli" path="res://scripts/platform_res.gd" id="1_i3pog"]
+[ext_resource type="Texture2D" uid="uid://bsjk8roxx6sbv" path="res://assets/Platforms/foam-platform.png" id="2_2pn5k"]
+
+[resource]
+script = ExtResource("1_i3pog")
+name = "Foam Platform"
+sprite = ExtResource("2_2pn5k")
+metadata/_custom_type_script = "uid://d240g447t5eli"

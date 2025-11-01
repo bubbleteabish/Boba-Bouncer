@@ -1,0 +1,99 @@
+[gd_scene load_steps=8 format=3 uid="uid://bgp2gi1sh8623"]
+
+[ext_resource type="Script" uid="uid://rnupl376lnmi" path="res://scripts/pudding_platform.gd" id="1_8d6wq"]
+[ext_resource type="Texture2D" uid="uid://dx84i2v6nm5pl" path="res://assets/Platforms/egg-pudding.png" id="1_s3try"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5ex3"]
+size = Vector2(174.27046, 32.675713)
+
+[sub_resource type="Animation" id="Animation_s3try"]
+resource_name = "bounce"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.78, 1.545), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(18.165, -12.06), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8d6wq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2e4ox"]
+_data = {
+&"RESET": SubResource("Animation_8d6wq"),
+&"bounce": SubResource("Animation_s3try")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2e4ox"]
+size = Vector2(169.05931, 42.20613)
+
+[node name="PuddingPlatform" type="StaticBody2D"]
+scale = Vector2(0.73449045, 0.73449045)
+collision_layer = 2
+script = ExtResource("1_8d6wq")
+
+[node name="Pudding" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_s3try")
+centered = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(104.83459, 24.506786)
+shape = SubResource("RectangleShape2D_o5ex3")
+one_way_collision = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_2e4ox")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(107.67496, 21.103065)
+shape = SubResource("RectangleShape2D_2e4ox")

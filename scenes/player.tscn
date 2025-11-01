@@ -1,36 +1,172 @@
-[gd_scene load_steps=7 format=3 uid="uid://ujhetrqauo1j"]
+[gd_scene load_steps=17 format=3 uid="uid://ujhetrqauo1j"]
 
 [ext_resource type="Texture2D" uid="uid://co1fme3y8f348" path="res://assets/Player/body.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://dardsru3s3iwf" path="res://scripts/player.gd" id="1_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://65po3ickudnb" path="res://assets/Player/standard-brows.png" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://dnqe6gip07rsi" path="res://assets/Player/standard-eyes.png" id="3_qlg0r"]
 [ext_resource type="Texture2D" uid="uid://l2e8reknyk3h" path="res://assets/Player/standard-mouth.png" id="4_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://c8bbjovtsouwb" path="res://addons/kenney_particle_pack/light_03.png" id="6_tuyoq"]
+
+[sub_resource type="Animation" id="Animation_qlg0r"]
+resource_name = "bounce"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1.0000005),
+"update": 0,
+"values": [Vector2(0.75, 0.75), Vector2(1, 0.5), Vector2(0.75, 0.75)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Eyes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.13256374, 0.33333334),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.5322581, 0.5322581), Vector2(0.532, -0.008), Vector2(0.5322581, 0.5322581)]
+}
+
+[sub_resource type="Animation" id="Animation_tuyoq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Eyes:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.5322581, 0.5322581)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fjrip"]
+_data = {
+&"RESET": SubResource("Animation_tuyoq"),
+&"bounce": SubResource("Animation_qlg0r")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
 radius = 58.00862
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qlg0r"]
+radius = 60.23657
+
+[sub_resource type="Curve" id="Curve_fjrip"]
+_data = [Vector2(0, 0.15730345), 0.0, -1.1721636, 0, 0, Vector2(0.15151514, 1), 0.0, 0.0, 0, 0, Vector2(0.34632033, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -5.3352084, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_y1p1s"]
+curve = SubResource("Curve_fjrip")
+
+[sub_resource type="Curve" id="Curve_smehm"]
+_data = [Vector2(0, 1), 0.0, -0.5393258, 0, 1, Vector2(1, 0.46067423), -0.24332854, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dd3wj"]
+curve = SubResource("Curve_smehm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ur7pv"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 1, 1)
+direction = Vector3(0, -50, 0)
+spread = 64.385
+flatness = 1.0
+initial_velocity_min = 79.35
+initial_velocity_max = 146.26
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 180, 0)
+linear_accel_min = 49.809998
+linear_accel_max = 49.809998
+radial_accel_min = 8.919997
+radial_accel_max = 8.919997
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_dd3wj")
+scale_over_velocity_max = 1000.0
+alpha_curve = SubResource("CurveTexture_y1p1s")
+hue_variation_min = -0.010000022
+hue_variation_max = 0.009999977
+
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 3
 script = ExtResource("1_qlg0r")
+bounce_velocity = -1200
 
 [node name="Body" type="Sprite2D" parent="."]
 position = Vector2(-1, -5)
 texture = ExtResource("1_3vyb7")
 
 [node name="Brows" type="Sprite2D" parent="Body"]
+use_parent_material = true
 position = Vector2(-1, -32)
 scale = Vector2(0.64, 0.64)
 texture = ExtResource("2_dqkch")
 
 [node name="Eyes" type="Sprite2D" parent="Body"]
+use_parent_material = true
 position = Vector2(-1, 0)
 scale = Vector2(0.5322581, 0.5322581)
 texture = ExtResource("3_qlg0r")
 
 [node name="Mouth" type="Sprite2D" parent="Body"]
+use_parent_material = true
 position = Vector2(-2, 31)
 scale = Vector2(0.57258064, 0.57258064)
 texture = ExtResource("4_tuyoq")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Body"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_fjrip")
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
 shape = SubResource("CircleShape2D_g2els")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_qlg0r")
+
+[node name="Particles" type="Node2D" parent="."]
+top_level = true
+
+[node name="FoamParticles" type="GPUParticles2D" parent="Particles"]
+self_modulate = Color(1.4139364, 1.0225594, 0.90344465, 1)
+position = Vector2(-1.3333333, 66.666664)
+emitting = false
+amount = 9
+texture = ExtResource("6_tuyoq")
+lifetime = 0.74
+one_shot = true
+explosiveness = 0.79
+process_material = SubResource("ParticleProcessMaterial_ur7pv")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

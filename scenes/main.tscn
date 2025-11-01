@@ -1,17 +1,102 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1p6sne6u37vs"]
+[gd_scene load_steps=7 format=3 uid="uid://b1p6sne6u37vs"]
 
 [ext_resource type="Script" uid="uid://1h66015g6181" path="res://scripts/main.gd" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://oimecoexews6" path="res://scenes/background.tscn" id="2_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://d3khcmiv3fy45" path="res://scenes/foam_platform.tscn" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://ujhetrqauo1j" path="res://scenes/player.tscn" id="4_tefeu"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jyhfs"]
+bg_color = Color(0.5319571, 0.6512571, 0.30947068, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tbgi4"]
+
 [node name="Main" type="Node2D"]
 script = ExtResource("1_o5qli")
+platform_gaps = Vector2i(85, 100)
 
-[node name="Node2D" parent="." instance=ExtResource("2_jyhfs")]
+[node name="Background" parent="." instance=ExtResource("2_jyhfs")]
+scroll_offset = Vector2(1, -956)
 
-[node name="FoamPlatform" parent="." instance=ExtResource("3_tbgi4")]
-position = Vector2(255, 887)
+[node name="StartingPlatforms" type="Node2D" parent="."]
+
+[node name="FoamPlatform" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(129, 22)
+
+[node name="FoamPlatform8" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(310, 123)
+
+[node name="FoamPlatform2" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(-8, 501)
+
+[node name="FoamPlatform3" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(174, 714)
+
+[node name="FoamPlatform4" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(339, 606)
+
+[node name="FoamPlatform5" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(-1, 287)
+
+[node name="FoamPlatform6" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(294, 306)
+
+[node name="FoamPlatform7" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(118, 174)
+
+[node name="FoamPlatform9" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
+position = Vector2(340, 445)
 
 [node name="Player" parent="." instance=ExtResource("4_tefeu")]
-position = Vector2(260, 771)
+z_index = 1
+position = Vector2(279, 533)
+jump_velocity = -800.0
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-1, -62)
+limit_left = 0
+limit_right = 540
+limit_bottom = 960
+
+[node name="GameOver" type="CanvasLayer" parent="."]
+process_mode = 2
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6222776, 0.62278646, 0.6105278, 0.4)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOver"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RestartBtn" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_jyhfs")
+text = "RESTART"
+
+[node name="HSeparator" type="HSeparator" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 17
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tbgi4")
+
+[node name="MainBtn" type="Button" parent="GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+theme_override_styles/normal = SubResource("StyleBoxFlat_jyhfs")
+text = "MAIN MENU"
+
+[connection signal="pressed" from="GameOver/VBoxContainer/RestartBtn" to="." method="_on_restart_btn_pressed"]
+[connection signal="pressed" from="GameOver/VBoxContainer/MainBtn" to="." method="_on_main_btn_pressed"]

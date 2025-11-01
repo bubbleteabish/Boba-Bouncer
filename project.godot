@@ -11,14 +11,22 @@ config_version=5
 [application]
 
 config/name="Boba Bouncer"
-run/main_scene="uid://b1p6sne6u37vs"
+run/main_scene="uid://b88rrm0k631cm"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Autoloads="*res://scripts/autoloads.gd"
 
 [display]
 
 window/size/viewport_width=540
 window/size/viewport_height=960
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/liquidsimulator/plugin.cfg")
 
 [rendering]
 
