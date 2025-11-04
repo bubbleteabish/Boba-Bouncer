@@ -23,7 +23,7 @@ scroll_offset = Vector2(1, -956)
 position = Vector2(129, 22)
 
 [node name="FoamPlatform8" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
-position = Vector2(310, 123)
+position = Vector2(378, 31.000008)
 
 [node name="FoamPlatform2" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
 position = Vector2(-8, 501)
@@ -32,19 +32,19 @@ position = Vector2(-8, 501)
 position = Vector2(174, 714)
 
 [node name="FoamPlatform4" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
-position = Vector2(339, 606)
+position = Vector2(397, 614)
 
 [node name="FoamPlatform5" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
 position = Vector2(-1, 287)
 
 [node name="FoamPlatform6" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
-position = Vector2(294, 306)
+position = Vector2(405.00003, 210)
 
 [node name="FoamPlatform7" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
-position = Vector2(118, 174)
+position = Vector2(28, 156)
 
 [node name="FoamPlatform9" parent="StartingPlatforms" instance=ExtResource("3_tbgi4")]
-position = Vector2(340, 445)
+position = Vector2(398, 455)
 
 [node name="Player" parent="." instance=ExtResource("4_tefeu")]
 z_index = 1

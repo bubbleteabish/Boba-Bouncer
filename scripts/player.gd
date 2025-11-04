@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-const SQUISH = preload("uid://dba5jmacqvmyh")
 
 @export var speed := 300.0
 @export var jump_velocity := -600.0
@@ -9,7 +8,8 @@ const SQUISH = preload("uid://dba5jmacqvmyh")
 
 var last_dir := 0.0
 var hit_ground = false
-var plat_hit 
+var plat_hit
+var plat_name 
 
 
 func _physics_process(delta: float) -> void:
@@ -22,11 +22,12 @@ func _physics_process(delta: float) -> void:
 		hit_ground = true
 		$Body/AnimationPlayer.play("bounce")
 		$Particles.global_position = self.global_position
-		match plat_hit:
-			"Foam":
+		if plat_name == "Foam":
 				$Particles/FoamParticles.restart()
 				$Particles/FoamParticles.emitting = true
-		if plat_hit == "Pudding":
+		if plat_name == "Popping":
+			Autoloads.hit_platform.emit(plat_hit)
+		if plat_name == "Pudding":
 			velocity.y = bounce_velocity
 		else:
 			velocity.y = jump_velocity
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction := Input.get_axis("ui_left", "ui_right")
+	var fire := Input.get_action_strength("ui_up")
 	if direction:
 		last_dir = direction
 		velocity.x = direction * speed
@@ -44,9 +46,12 @@ func _physics_process(delta: float) -> void:
 		var ro_delta = randf_range(.1, .5)
 		rotation_speed = move_toward(rotation_speed, 0, ro_delta)
 		$Body.rotation += rotation_speed * last_dir * delta
-
+	if fire > 0:
+		print("FIRE")
 	move_and_slide()
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	plat_hit = body.get_child(0).name
+	plat_name = body.get_child(0).name
+	plat_hit = body
+	

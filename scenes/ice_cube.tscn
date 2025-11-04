@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpraltpqhsny3"]
+
+[ext_resource type="Script" uid="uid://bx117rbxfsen0" path="res://scripts/ice_cube.gd" id="1_240pj"]
+[ext_resource type="Texture2D" uid="uid://dciikwh0jl7ji" path="res://assets/Obstacles/ice-cube.png" id="1_mqgh4"]
+
+[sub_resource type="Animation" id="Animation_240pj"]
+resource_name = "shake"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.13962634015954636, -0.13962634015954636]
+}
+
+[sub_resource type="Animation" id="Animation_ovlj8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eh3lo"]
+_data = {
+&"RESET": SubResource("Animation_ovlj8"),
+&"shake": SubResource("Animation_240pj")
+}
+
+[node name="IceCube" type="CharacterBody2D"]
+z_index = 1
+scale = Vector2(0.72, 0.72)
+collision_mask = 0
+script = ExtResource("1_240pj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(1, 1, 1, 0.78039217)
+texture = ExtResource("1_mqgh4")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PackedVector2Array(12, -56, -12, -50, -38, -49, -54, -43, -54, -26, -52, 28, -42, 41, -31, 52, -13, 59, 8, 52, 37, 50, 53, 47, 50, -2, 48, -24, 36, -41, 27, -56)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_eh3lo")
+}
+autoplay = "shake"

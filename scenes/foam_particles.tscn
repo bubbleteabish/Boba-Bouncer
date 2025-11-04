@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://b1cucrxboogcq"]
+
+[ext_resource type="Texture2D" uid="uid://c8bbjovtsouwb" path="res://addons/kenney_particle_pack/light_03.png" id="1_ompe7"]
+
+[sub_resource type="Curve" id="Curve_tuyoq"]
+_data = [Vector2(0, 0), 0.0, 3.4737835, 0, 0, Vector2(0.09142858, 0.6966293), 0.0, 0.0, 0, 0, Vector2(0.9885714, 0.033707857), -0.7389252, 0.0, 1, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_y1p1s"]
+curve = SubResource("Curve_tuyoq")
+
+[sub_resource type="Curve" id="Curve_fjrip"]
+_limits = [-1.0, 1.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_smehm"]
+curve = SubResource("Curve_fjrip")
+
+[sub_resource type="Curve" id="Curve_smehm"]
+_data = [Vector2(0, 1), 0.0, -0.5393258, 0, 1, Vector2(1, 0.46067423), -0.24332854, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dd3wj"]
+curve = SubResource("Curve_smehm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_smehm"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(16, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 34.411
+flatness = 0.118
+initial_velocity_min = 112.68
+initial_velocity_max = 136.15
+angular_velocity_min = -720.0
+angular_velocity_max = 719.99994
+gravity = Vector3(0, 480, 0)
+linear_accel_min = 49.809998
+linear_accel_max = 49.809998
+radial_accel_min = 8.919997
+radial_accel_max = 8.919997
+scale_min = 0.01
+scale_max = 0.03
+scale_curve = SubResource("CurveTexture_dd3wj")
+color = Color(0.96671575, 0.917739, 0.7477978, 1)
+alpha_curve = SubResource("CurveTexture_y1p1s")
+hue_variation_curve = SubResource("CurveTexture_smehm")
+
+[node name="FoamParticles" type="GPUParticles2D"]
+self_modulate = Color(1.4139364, 1.0225594, 0.90344465, 1)
+emitting = false
+amount = 6
+texture = ExtResource("1_ompe7")
+lifetime = 0.63
+one_shot = true
+explosiveness = 0.78
+process_material = SubResource("ParticleProcessMaterial_smehm")
