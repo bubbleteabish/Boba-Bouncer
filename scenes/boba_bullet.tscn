@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://cblvi6x5xot2u"]
+[gd_scene load_steps=4 format=3 uid="uid://cblvi6x5xot2u"]
 
 [ext_resource type="Texture2D" uid="uid://co1fme3y8f348" path="res://assets/Player/body.png" id="1_1nmwp"]
+[ext_resource type="Script" uid="uid://dotfg6nj6j5qq" path="res://scripts/boba_bullet.gd" id="1_tjy68"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tjy68"]
 radius = 3.6812115
 
-[node name="Node2D" type="Area2D"]
+[node name="BobaBullet" type="Area2D"]
+z_index = 1
+script = ExtResource("1_tjy68")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.079999104, 0.079999104)
