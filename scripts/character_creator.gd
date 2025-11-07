@@ -12,7 +12,9 @@ var selected_mouth := 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Player.process_mode = Node.PROCESS_MODE_DISABLED
+	$Player/Body/AnimationPlayer.play("character_creator")
+	$Player.character_creator = true
+	#$Player.process_mode = Node.PROCESS_MODE_DISABLED
 
 
 func _on_brows_pressed() -> void:
@@ -37,4 +39,6 @@ func _on_mouth_pressed() -> void:
 
 
 func _on_done_pressed() -> void:
+	$Player/Body/AnimationPlayer.play("RESET")
+	$Player.character_creator = false
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

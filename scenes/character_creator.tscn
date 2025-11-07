@@ -35,7 +35,6 @@ mouths = Array[Texture]([ExtResource("19_2uqtn"), ExtResource("14_axsho"), ExtRe
 
 [node name="Player" parent="." instance=ExtResource("2_6txqo")]
 position = Vector2(269, 279)
-scale = Vector2(1.48, 1.48)
 disable_mode = 1
 motion_mode = 1
 

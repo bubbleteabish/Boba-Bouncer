@@ -9,6 +9,7 @@ radius = 3.6812115
 [node name="BobaBullet" type="Area2D"]
 z_index = 1
 script = ExtResource("1_tjy68")
+speed = -1200
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.079999104, 0.079999104)
@@ -18,3 +19,5 @@ texture = ExtResource("1_1nmwp")
 rotation = 2.6179938
 scale = Vector2(1.27791, 1.235883)
 shape = SubResource("CircleShape2D_tjy68")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

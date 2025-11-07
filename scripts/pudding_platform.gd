@@ -5,7 +5,6 @@ extends StaticBody2D
 func _ready() -> void:
 	$Area2D.body_entered.connect(bounced_on)
 
-
 func bounced_on(body):
 	if body is CharacterBody2D:
 		var character_body = body as CharacterBody2D

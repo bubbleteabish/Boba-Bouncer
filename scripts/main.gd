@@ -14,6 +14,7 @@ var platform_x
 var platform_y
 var last_platform
 var ice_cube = preload("res://scenes/ice_cube.tscn")
+var bad_bean = preload("res://scenes/bad_bean.tscn")
 var obstacles = []
 var screen_size
 var start_position
@@ -22,12 +23,11 @@ var start_position
 
 func _ready() -> void:
 	restart_btn.pressed.connect(new_game)
+	Autoloads.player_hit.connect(game_over)
 	start_position = $Player.global_position
 	screen_size = get_window().size
 	last_platform = $StartingPlatforms/FoamPlatform
-	$Player/Body/Brows.texture = Autoloads.current_brows
-	$Player/Body/Eyes.texture = Autoloads.current_eyes
-	$Player/Body/Mouth.texture = Autoloads.current_mouth
+
 
 func new_game():
 	last_platform = $StartingPlatforms/FoamPlatform
@@ -39,9 +39,10 @@ func new_game():
 	obstacles.clear()
 	$Player.global_position = start_position
 	$Player/Camera2D.limit_bottom = screen_size.y
+	Autoloads.new_game.emit()
 	$GameOver.hide()
 	get_tree().paused = false
-	
+
 
 func _process(_delta: float) -> void:
 	remove_platforms()
@@ -51,15 +52,16 @@ func _process(_delta: float) -> void:
 	if $Player.global_position.y < $Player/Camera2D.limit_bottom - screen_size.y:
 		$Player/Camera2D.limit_bottom = $Player.global_position.y + screen_size.y
 	if $Player.global_position.y > $Player/Camera2D.limit_bottom:
+		Autoloads.player_fell.emit()
 		game_over()
 
 func generate_platforms():
 	if platforms.is_empty() or platforms.size() < max_platforms:
 		var pick_plat = randi_range(0,300)
 		var platform
-		if pick_plat < 10:
+		if pick_plat <= 10:
 			platform = pudding_platform.instantiate()
-		if pick_plat >= 10 and pick_plat < 30:
+		elif pick_plat > 10 and pick_plat <= 20:
 			platform = popping_platform.instantiate()
 		else:
 			platform = foam_platform.instantiate()
@@ -88,10 +90,17 @@ func remove_platforms():
 
 func add_obstacle():
 	if obstacles.is_empty() or obstacles.size() < max_obstacles:
-		var obstacle = ice_cube.instantiate()
-		var randy = randi_range(screen_size.y * 5, screen_size.y * 25)
-		obstacle.global_position.y = $Player.global_position.y - randy
-		obstacle.global_position.x = randi_range(0, screen_size.x)
+		var rando = randi_range(0,100)
+		var obstacle
+		if rando <= 80:
+			obstacle = ice_cube.instantiate()
+			var randy = randi_range(screen_size.y * 5, screen_size.y * 25)
+			obstacle.global_position.y = $Player.global_position.y - randy
+			obstacle.global_position.x = randi_range(0, screen_size.x)
+		else:
+			obstacle = bad_bean.instantiate()
+			obstacle.global_position.x = last_platform.global_position.x + 69
+			obstacle.global_position.y = last_platform.global_position.y - 48
 		add_child(obstacle)
 		obstacles.append(obstacle)
 

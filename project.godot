@@ -24,6 +24,10 @@ Autoloads="*res://scripts/autoloads.gd"
 window/size/viewport_width=540
 window/size/viewport_height=960
 
+[editor]
+
+movie_writer/movie_file="D:/Godot Recordings/boba_bouncer.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/liquidsimulator/plugin.cfg")

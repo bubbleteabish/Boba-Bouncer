@@ -47,7 +47,7 @@ position = Vector2(28, 156)
 position = Vector2(398, 455)
 
 [node name="Player" parent="." instance=ExtResource("4_tefeu")]
-z_index = 1
+z_index = 2
 position = Vector2(279, 533)
 jump_velocity = -800.0
 
